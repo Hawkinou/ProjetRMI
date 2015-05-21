@@ -1,17 +1,23 @@
 package serveur;
 
-public class Serveur {
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
-	public Serveur() {
-		// TODO Auto-generated constructor stub
-	}
+public class Serveur {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		try {
 
+			Registry reg=LocateRegistry.createRegistry(2001);
+			//enregistre l'objet RMI
+			//reg.rebind("Hello", objet);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
