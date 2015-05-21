@@ -11,6 +11,8 @@ $RECYCLE.BIN/
 #eclipse 
 .project
 .classpath
+META-INF/
+bin/
 
 # Windows Installer files
 *.cab
@@ -45,5 +47,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-META-INF/
-bin/
+
