@@ -3,6 +3,9 @@ package serveur;
 import java.rmi.RemoteException;
 
 public interface Distante extends java.rmi.Remote{
-	public void connexion() throws RemoteException;
+	
+	public void publier() throws RemoteException;
+	void connexion(String user, String password) throws RemoteException;
+	
 
 }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.NotBoundException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +16,7 @@ import javax.swing.JTextField;
 
 
 public class Ihm {
-	RmiClient client;
+	Client client;
 	JTextArea textZone;
 	JFrame frame;
 	JPanel connexion;
@@ -25,7 +26,7 @@ public class Ihm {
 	JTextField motDePasse;
 	JButton boutonEnvoi;
 
-	public Ihm(RmiClient client){
+	public Ihm(Client client){
 		this.client=client;
 		frame = new JFrame("Twitter");
 		frame.setLayout(new GridLayout(3,1));
@@ -35,6 +36,7 @@ public class Ihm {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
+	
 	private void createPanel(){
 		connexion = new JPanel();
 		connexion.add(new JLabel("Connexion"));
@@ -54,7 +56,12 @@ public class Ihm {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				client.connexion(pseudo.getText(),motDePasse.getText());
+				try {
+					client.connexion(pseudo.getText(),motDePasse.getText());
+				} catch (NotBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		});
