@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import serveur.UserI;
 
@@ -105,6 +104,7 @@ public class Client {
 	 * @param args
 	 * @throws NotBoundException 
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws NotBoundException {
 		System.out.println("Creation de client" );
 		Client client = new Client();
