@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import serveur.UserI;
 
@@ -75,7 +76,7 @@ public class Client {
 		}
 	}
 	
-	public void getMyTweet() throws NotBoundException{
+	public ArrayList<String> getMyTweet() throws NotBoundException{
 		if(this.getUser() != null)
 		{
 			try{
@@ -87,6 +88,7 @@ public class Client {
 				for(String tweet: result) {
 				    System.out.println(tweet);
 				}
+				return result;
 				
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -96,6 +98,7 @@ public class Client {
 		{
 			System.out.println("Client non connecté" );
 		}
+		return null;
 	}
 	
 	/**

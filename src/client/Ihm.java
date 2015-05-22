@@ -1,6 +1,5 @@
 package client;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,7 +15,7 @@ import javax.swing.JTextField;
 
 
 
-public class IhmConnexion {
+public class Ihm {
 	Client client;
 	JTextArea textZone;
 	JFrame frame;
@@ -26,11 +25,8 @@ public class IhmConnexion {
 	JTextField pseudo;
 	JTextField motDePasse;
 	JButton boutonEnvoi;
-	JButton connexionButton;
-	JButton inscription;
 
-
-	public IhmConnexion(Client client){
+	public Ihm(Client client){
 		this.client=client;
 		frame = new JFrame("Serveur");
 		frame.setLayout(new GridLayout(3,1));
@@ -43,26 +39,8 @@ public class IhmConnexion {
 	
 	private void createPanel(){
 		connexion = new JPanel();
-		connexion.setLayout(new GridLayout(1,2));
-		connexionButton = new JButton("Connexion");
-		connexionButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setConnexion();
-			}
-		});
-		inscription=new JButton("Inscription");
-		inscription.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setInscription();
-			}
-		});
-		connexion.add(connexionButton);
-		connexion.add(inscription);
-
+		connexion.add(new JLabel("Connexion"));
+		
 		champ = new JPanel();
 		champ.setLayout(new GridLayout(2,2));
 		pseudo=new JTextField();
@@ -72,16 +50,8 @@ public class IhmConnexion {
 		champ.add(new JLabel("Mot de passe"));
 		champ.add(motDePasse);
 		
-		setConnexion();
-		frame.add(connexion);
-		frame.add(champ);
-		frame.add(validation);
-	}
-	public void setConnexion(){
-		inscription.setBackground(Color.GRAY);
-		connexionButton.setBackground(Color.lightGray);
 		validation = new JPanel();
-		boutonEnvoi = new JButton("Se connecter");
+		boutonEnvoi = new JButton("Valider");
 		boutonEnvoi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -95,8 +65,6 @@ public class IhmConnexion {
 						{						
 							System.out.println("Tentative publication tweet");
 							client.publish("C'est un tweet #tag #lol qui sert à rien #pd");
-							client.publish("Cegrgaeet #tag #a rien #pd");	
-							client.publish("agt un ageg #lolagert à rien #pd");	
 						}
 					
 				} catch (NotBoundException e) {
@@ -107,21 +75,9 @@ public class IhmConnexion {
 			}
 		});
 		validation.add(boutonEnvoi);
-	}
-	public void setInscription(){
-		connexionButton.setBackground(Color.GRAY);
-		inscription.setBackground(Color.lightGray);
-		validation = new JPanel();
-		boutonEnvoi = new JButton("S'inscrire");
-		boutonEnvoi.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-//TODO ici c'est le bouton d'inscription
-				
-			}
-		});
-		validation.add(boutonEnvoi);
+		frame.add(connexion);
+		frame.add(champ);
+		frame.add(validation);
 	}
 	public void quit(){
 		frame.dispose();
