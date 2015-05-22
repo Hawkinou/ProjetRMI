@@ -28,7 +28,7 @@ public class Ihm {
 
 	public Ihm(Client client){
 		this.client=client;
-		frame = new JFrame("Twitter");
+		frame = new JFrame("Serveur");
 		frame.setLayout(new GridLayout(3,1));
 		createPanel();
 		Dimension d = new Dimension(300, 150);
@@ -57,7 +57,16 @@ public class Ihm {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					client.connexion(pseudo.getText(),motDePasse.getText());
+					
+					String user = pseudo.getText();
+					boolean isConnected = client.connexion(user,motDePasse.getText());
+					System.out.println("connexion " + isConnected);
+					if(isConnected)
+						{						
+							System.out.println("Tentative publication tweet");
+							client.publish("C'est un tweet #tag #lol qui sert à rien #pd");
+						}
+					
 				} catch (NotBoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
