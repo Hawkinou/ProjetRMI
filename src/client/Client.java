@@ -11,7 +11,8 @@ import serveur.UserI;
 
 public class Client {
 
-	Ihm ihm;
+	IhmConnexion ihm;
+	IhmTwitter ihmTwit;
 	Registry registry;
 	String user=null;
 
@@ -31,7 +32,7 @@ public class Client {
 	}
 
 	public Client() {
-		ihm=new Ihm(this);
+		ihm=new IhmConnexion(this);
 				
 	}
 
@@ -41,6 +42,9 @@ public class Client {
 			if( ((UserI) registry.lookup("Users")).connexion(user, password))
 			{
 				this.setUser(user);
+				ihm.quit();
+				ihmTwit=new IhmTwitter(this);
+
 				return true;
 			}
 			
@@ -101,13 +105,13 @@ public class Client {
 	public static void main(String[] args) throws NotBoundException {
 		System.out.println("Creation de client" );
 		Client client = new Client();
-		client.connexion("toto","mdp");
+		/*client.connexion("toto","mdp");
 		client.publish("C'est un tweet #tag #lol qui sert à rien #pd");
 		client.connexion("clement","azerty");
 		client.publish("Cegrgaeet #tag #a rien #pd");	
 		client.connexion("toto","mdp");
 		client.publish("agt un ageg #lolagert à rien #pd");	
-		client.getMyTweet();
+		client.getMyTweet();*/
 		
 	}
 

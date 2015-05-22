@@ -1,5 +1,6 @@
 package client;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,7 @@ import javax.swing.JTextField;
 
 
 
-public class Ihm {
+public class IhmConnexion {
 	Client client;
 	JTextArea textZone;
 	JFrame frame;
@@ -25,8 +26,11 @@ public class Ihm {
 	JTextField pseudo;
 	JTextField motDePasse;
 	JButton boutonEnvoi;
+	JButton connexionButton;
+	JButton inscription;
 
-	public Ihm(Client client){
+
+	public IhmConnexion(Client client){
 		this.client=client;
 		frame = new JFrame("Serveur");
 		frame.setLayout(new GridLayout(3,1));
@@ -39,8 +43,26 @@ public class Ihm {
 	
 	private void createPanel(){
 		connexion = new JPanel();
-		connexion.add(new JLabel("Connexion"));
-		
+		connexion.setLayout(new GridLayout(1,2));
+		connexionButton = new JButton("Connexion");
+		connexionButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setConnexion();
+			}
+		});
+		inscription=new JButton("Inscription");
+		inscription.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setInscription();
+			}
+		});
+		connexion.add(connexionButton);
+		connexion.add(inscription);
+
 		champ = new JPanel();
 		champ.setLayout(new GridLayout(2,2));
 		pseudo=new JTextField();
@@ -50,6 +72,14 @@ public class Ihm {
 		champ.add(new JLabel("Mot de passe"));
 		champ.add(motDePasse);
 		
+		setConnexion();
+		frame.add(connexion);
+		frame.add(champ);
+		frame.add(validation);
+	}
+	public void setConnexion(){
+		inscription.setBackground(Color.GRAY);
+		connexionButton.setBackground(Color.lightGray);
 		validation = new JPanel();
 		boutonEnvoi = new JButton("Valider");
 		boutonEnvoi.addActionListener(new ActionListener() {
@@ -75,9 +105,21 @@ public class Ihm {
 			}
 		});
 		validation.add(boutonEnvoi);
-		frame.add(connexion);
-		frame.add(champ);
-		frame.add(validation);
+	}
+	public void setInscription(){
+		connexionButton.setBackground(Color.GRAY);
+		inscription.setBackground(Color.lightGray);
+		validation = new JPanel();
+		boutonEnvoi = new JButton("Valider");
+		boutonEnvoi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+//TODO ici c'est le bouton d'inscription
+				
+			}
+		});
+		validation.add(boutonEnvoi);
 	}
 	public void quit(){
 		frame.dispose();
