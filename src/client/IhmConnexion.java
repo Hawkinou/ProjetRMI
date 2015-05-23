@@ -117,7 +117,12 @@ public class IhmConnexion {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-//TODO ici c'est le bouton d'inscription
+				try {
+					client.inscription(pseudo.getText(),motDePasse.getText());
+				} catch (NotBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		});

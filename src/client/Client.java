@@ -35,6 +35,19 @@ public class Client {
 		ihm=new IhmConnexion(this);
 				
 	}
+	public void inscription(String user, String password) throws NotBoundException{
+		
+		try {
+				Registry registry = LocateRegistry.getRegistry("localhost",1088);
+			
+					((UserI) registry.lookup("Users")).newUser(user,password);
+			
+			
+			
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public boolean connexion(String user, String password) throws NotBoundException{
 		try{

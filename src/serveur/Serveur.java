@@ -1,5 +1,6 @@
 package serveur;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -24,6 +25,14 @@ public class Serveur {
 			}			
 			registry.rebind("Users", allUser);
 			registry.rebind("Tweets", allTweet);
+			try {
+				((UserI) registry.lookup("Users")).newUser("admin","admin");
+				((UserI) registry.lookup("Users")).newUser("edouard","password");
+				((UserI) registry.lookup("Users")).newUser("clement","password");
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
 			
